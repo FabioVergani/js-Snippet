@@ -1,15 +1,15 @@
 'use strict';
 (function($window){
- function Capitalized(x){var s=x;return s.charAt(0).toUpperCase()+s.slice(1);}
+ function dummy(){}
+ function capitalize(x){var s=x;return s.charAt(0).toUpperCase()+s.slice(1);}
 
- var w=$window, $console=w.console;
 
- ['dir','info','log','group','groupEnd','groupCollapsed','clear'].forEach(function(x){
-	var p=x,o=$console;
-	w[p.length===3?p:'log'+Capitalized(p)]=function(){
-	 o[p].apply(o,arguments);
-	};
- });
+ var w=(function(w){
+	var c=w.console, f=c===undefined?(c=w.console={},dummy):function(p){return function(){var o=c;o[p].apply(o,arguments);};};
+	['dir','info','log','group','groupEnd','groupCollapsed','clear'].forEach(function(x){var s=x;w[s.length===3?s:'log'+capitalize(s)]=f(s);});
+	return w;
+ })($window);
+
 
 })(window);
 /*
@@ -23,7 +23,6 @@ log(31);
 logGroupEnd();
 logInfo();
 */
-
 (function($window){
 
  var w=$window,
