@@ -1,29 +1,25 @@
-
-var p,l=window.location,s=l.pathname;
-if(s.length>1){
- l='/';
- if(s.endsWith(l)){
-	//nofile
- }else{
-	 if(l=s.lastIndexOf(l)){
-		p=s;
-		 console.log(1,p);
-		s=s.substring(l+1);//filenameWithExtensionOrAncor
-		p=p.substring(0,p.length-s.length);
-		 
-		console.log(2,p);
-		 
-		if(l=s.lastIndexOf('.')){
-			s=s.substring(0,l);//filenameOnly
-			if(l=/\d+$/.exec(s)){
-				s.replace(l[0],'xxx');
-				//console.dir(l)
-				//l=l[0];
-				//console.log(s);
+(function($){
+ const l=$.location,p=l.pathname;
+ if(p.length>1){
+	if(p.endsWith('/')){
+	 //console.info('nofile¹','dominio.it/path/');
+	}else{
+	 let i=p.lastIndexOf('/'),r=/\d+$/;
+	 if(i>1){
+		let a=p.slice(0,++i),b=p.slice(i);
+		if(i=b.lastIndexOf('.')){//filename with -possible- extension (but not ancors or search)
+			let c=b.slice(i);//filenameOnly
+			b=b.slice(0,i);
+			if(r=r.exec(b)){//match!
+				b=b.slice(0,r.index)+(++r[0]);
 			};
-
+			l.href=(l.origin+a+b+c+(l.hash||l.search||''));
 		};
-	 };
- };
-};
 
+	 }else{
+		//console.info('nofile²','dominio.it/path');
+	 };
+	};
+ };
+
+})(window);
