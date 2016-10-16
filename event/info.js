@@ -14,3 +14,19 @@ p='keyCode';console.log(p,o[p]);
 console.dir(evt);
 
 });
+
+
+/*
+code ArrowRight
+keyCode 39
+
+code ArrowLeft
+keyCode 37
+
+code ArrowUp
+keyCode 38
+
+code ArrowDown
+keyCode 40
+
+*/
