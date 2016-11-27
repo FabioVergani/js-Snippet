@@ -1,3 +1,12 @@
+function _classCallCheck(a,b){// instance, Constructor
+  if(a instanceof b){
+	//console.info('%O'+a+'is instance of%O'+b);
+  }else{
+    throw new TypeError('Called a class as a function...');
+  };
+}
+
+
 function defineProperties(o,p){// dest, props
  const m=p;
  var i=m.length;
@@ -20,4 +29,8 @@ function _createClass(a,b,c){// Constructor, protoProps, staticProps
  if(b){f(a.prototype,b);};
  if(c){f(a,c);}
  return a;
-}
+} 
+
+
+
+
