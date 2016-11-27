@@ -32,5 +32,15 @@ function _createClass(a,b,c){// Constructor, protoProps, staticProps
 } 
 
 
+var laMiaClasse = _createClass(Function(),[{
+	key:'pippo',
+	value:function(){alert(222)}
+},{
+	key:'pluto',
+	value:2
+}]);
+
+var istanzaDellaMiaClasse=new laMiaClasse;
 
 
+istanzaDellaMiaClasse.pippo();
