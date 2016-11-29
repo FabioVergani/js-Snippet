@@ -14,15 +14,13 @@ var myClass=aRawObj({
   }}
   
 });
-//
+//-
 var istanza1=Create(myClass);
 istanza1.counter=1;
 istanza1.method1();
-
+console.dir(istanza1);
+//-
 var istanza2=Create(myClass);
 istanza2.counter=2;
 istanza2.method1();
-
-
-console.dir(istanza1);
 console.dir(istanza2);
