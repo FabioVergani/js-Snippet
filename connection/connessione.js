@@ -7,11 +7,10 @@
 <pre id="output"></pre>
 <script>
  
-
 //
 (function(w){
  function f(o){//handleConnection
-  document.getElementById("output").innerHTML=("connessione:"+o.type);//+o.type
+  document.getElementById("output").innerHTML=("connessione:"+o?o.type:'absent');//+o.type
   console.dir(o);
  }
  var e=w.navigator;
@@ -20,6 +19,7 @@
  return e?(e.addEventListener('typechange',function(evt){f(evt.target);}),e):{type:'absent'};
 })(window);
 //
+
 
 </script>
 </body>
