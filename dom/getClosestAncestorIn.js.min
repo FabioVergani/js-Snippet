@@ -1,1 +1,4 @@
 function getClosestAncestorIn(A,B){const b=B;var a=A;while(a){if(a.isSameNode(b)){return a;}else{a=a.parentNode;};};return null;}
+
+function getClosestAncestorIn(a,b){const x=b;var e=a;while(e){if(e.isSameNode(x)){return e;}else{e=e.parentNode;};};return null;}
+
