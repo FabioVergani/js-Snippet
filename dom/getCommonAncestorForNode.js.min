@@ -1,0 +1,1 @@
+function getCommonAncestorForNode(a,b){const m=[];var n=a;while(n=n.parentNode){m[m.length]=n;};if(m.length){n=b;while(n=n.parentNode){if(m.includes(n)){return n;};};};return null;}
