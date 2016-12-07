@@ -1,0 +1,6 @@
+document.addEventListener('readystatechange', function docStateChange(e) {
+    if(e.target.readystate === 'complete') {
+        e.target.removeEventListener('readystatechange', docStateChange);
+        done();
+    }
+});
