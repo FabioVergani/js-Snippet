@@ -1,0 +1,12 @@
+HTMLDocument.prototype.ready = function () {
+	return new Promise(function(resolve, reject) {
+		if (document.readyState === 'complete') {
+			resolve(document);
+		} else {
+			document.addEventListener('DOMContentLoaded', function() {
+			resolve(document);
+		});
+	 }
+	});
+}
+//document.ready().then(...);
