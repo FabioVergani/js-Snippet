@@ -10,3 +10,18 @@ document.addEventListener('readystatechange', function docStateChange(e) {
 
 
 //document.onreadystatechange = function() {
+
+
+
+
+  const handleReady=function(evt){
+   const t=evt.target;
+   if(t.readystate==='complete'){
+    alert('ready');
+    t.removeEventListener('readystatechange',handleReady);
+   };
+  };
+
+  e=w.open();
+  e=e.document;
+  e.onreadystatechange=handleReady;
