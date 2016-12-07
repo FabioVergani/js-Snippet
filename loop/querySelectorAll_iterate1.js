@@ -1,4 +1,4 @@
- const m = Array.from(d.querySelectorAll(''));
+ const m = d.querySelectorAll('');
  //console.dir(m);
 
  let n,i=m.length;
