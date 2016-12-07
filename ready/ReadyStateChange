@@ -4,3 +4,9 @@ document.addEventListener('readystatechange', function docStateChange(e) {
         done();
     }
 });
+
+
+//
+
+
+//document.onreadystatechange = function() {
