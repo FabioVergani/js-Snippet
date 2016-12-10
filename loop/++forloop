@@ -1,0 +1,3 @@
+for (let e,i=0,l=9; i <=l; e=i, ++i){
+  console.log(e)
+}
