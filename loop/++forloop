@@ -1,3 +1,16 @@
-for (let e,i=0,l=9; i <=l; e=i, ++i){
-  console.log(e)
+for (let i=0,l=9;i<l;){
+  console.log(i);
+  ++i;
 }
+
+/*
+0
+1
+2
+3
+4
+5
+6
+7
+8
+*/
