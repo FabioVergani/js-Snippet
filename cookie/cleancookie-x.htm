@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>x: cleancookie ( UECL-x )</title>
+<script type="text/javascript" >
+ function nope(){}
+
+ function readCookie(a){
+  var r=null,n=a,m,e,l,i,j;
+  if(useLocalStorageForCookie){
+	r=Storage.getItem(n);
+  }else{
+	for(i=0,n+='=',m=document.cookie.split(';'),l=m.length;i<l;++i){
+	 e=m[i];
+	 while(e.charAt(0)==='\u0020'){e=e.substring(1,j=e.length);};
+	 if(e.indexOf(n)===0){r=e.substring(n.length,j);break;};
+	};
+  };
+  return r;
+ }
+
+ function writeCookie(a,b,c){var n=a,o=b,i=c;return useLocalStorageForCookie?localStorage.setItem(n,o):(document.cookie=(n+'='+(i>0?o+';\u0020expires='+((o=new Date).setTime(o.getTime()+i),o).toGMTString():o)+';\u0020path=/'),readCookie(n));}
+
+ var useLocalStorageForCookie=(location.origin==='file://');
+ if(useLocalStorageForCookie && ! localStorage){ localStorage={setItem:nope,getItem:nope};};
+ writeCookie('UECL-x','',-1);
+</script>
+</head>
+<body />
+</html>
