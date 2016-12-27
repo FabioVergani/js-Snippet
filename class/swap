@@ -1,0 +1,2 @@
+	  const c=e.classList;
+	  c[c.toggle('collapsed')?'remove':'add']('expanded');
