@@ -1,0 +1,46 @@
+document.getElementsByClassName() is an HTMLCollection, and is live.
+
+document.getElementsByTagName() is an HTMLCollection, and is live.
+
+document.getElementsByName() is a NodeList and is live.
+
+document.querySelectorAll() is a NodeList and is not live.
+
+Well, here is a quick method to determine if a collection is live; it appends a clone of a member of the collection to the DOM (so it will match the selector), and checks to see if the length changed, and then removes it (so the page is not affected)
+
+function isLive(collection) {
+    if (collection.length < 1) {
+        return undefined; //inconclusivw 
+    }
+    var body = document.getElementsByTagName('body')[0];
+    var l1 = collection.length;
+    var clone = collection.item(0).cloneNode();
+    clone.style.display = "none";
+    body.appendChild(clone);
+    var l2 = collection.length;
+    body.removeChild(clone);
+    return l2 !== l1;
+}
+DEMO
+
+HTML
+
+<html><body>
+<div class="c" name="mydiv">C1</div>
+<div class="c" name="mydiv">C2</div>
+</body></html>
+JS
+
+divs1=document.getElementsByClassName('c');
+console.log(divs1.toString());//"[object HTMLCollection]"
+
+
+divs2=document.querySelectorAll('.c');
+console.log(divs2.toString());//"[object NodeList]"
+
+divs3=document.getElementsByName('mydiv');
+console.log(divs3.toString());//"[object NodeList"]
+
+console.log(isLive(divs1));//true
+console.log(isLive(divs2));//false
+console.log(isLive(divs3));//true
