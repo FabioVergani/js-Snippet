@@ -1,0 +1,20 @@
+<a href="javascript:onLoad();">Load a File!</a>
+<input type="file" id="fileInput" onchange="handleFiles(this.files)" style="visibility:hidden;position:absolute;top:-50;left:-50"/>
+
+And here’s the JavaScript code:
+
+
+ function onLoad() {
+    id('fileInput').click();
+}
+
+function handleFiles(files) {
+    var file = files[0];
+    var reader = new FileReader();
+    reader.onload = onFileReadComplete;
+    reader.readAsText(file);
+}
+  
+function onFileReadComplete(event) { 
+  // Do something fun with your file contents.
+}
