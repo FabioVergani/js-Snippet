@@ -1,0 +1,26 @@
+function zeroFill(number, limit) {for (var i = number.toString().length; i < limit; ++i) { number = '0' + number;}return number;}
+
+function colorToHex(color, default_color) {
+    if (color == 'transparent') {
+        return default_color;
+    }
+    if (color.substr(0, 1) === '#' || color.search("rgb") == -1) {
+        return color;
+    }
+    
+    var digits = /(.*?)rgb\((\d+), (\d+), (\d+)\)/.exec(color);
+    
+    if (!digits || digits.length <= 0) {
+        return color;
+    }
+    
+    var red = parseInt(digits[2]);
+    var green = parseInt(digits[3]);
+    var blue = parseInt(digits[4]);
+    
+    var rgb = blue | (green << 8) | (red << 16);
+    var final_color = digits[1] + '#' + zeroFill(rgb.toString(16), 6);
+    
+    return final_color;
+}
+
