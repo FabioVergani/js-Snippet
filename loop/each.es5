@@ -1,0 +1,3 @@
+function each(a,b){for(var f=b, m=a, l=m.length, i=0; i<l; ++i){f(m[i],i,m);};}
+
+each([1,2,3],console.log)
