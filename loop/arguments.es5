@@ -1,0 +1,3 @@
+for(var e, m=arguments, l=m.length, i=0; i<l; ++i){
+ var e=m[i];
+};
