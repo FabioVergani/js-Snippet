@@ -1,17 +1,18 @@
 //
 (function($){'use strict';
- function on(a,b,c){var e=a,s=b,i=c;e.removeEventListener(s,i);e.addEventListener(s,i)}
- function at(a,b,c){function i(x){f(x);e.removeEventListener(s,i)}var e=a,s=b,f=c;on(e,s,i)}
- function f1(evt){
-	console.group('isReady');console.dir(evt);
+ function on(a,b,c){var e=a,s=b,i=c,f=e.removeEventListener;f(s,i);e.addEventListener(s,i);return f;}
+ function at(a,b,c){function i(o){f(o);r(s,i)}var s=b,f=c,r=on(a,s,i);}
+ //
+
+ //
+ function a(evt){//console.group('isReady');console.dir(evt);
 	var w=evt.target;
 
  }
- function f2(evt){//
-	console.group('isLoad');console.dir(evt);
+ function b(evt){//console.group('isLoad');console.dir(evt);
 	var w=evt.currentTarget;
 
  }
  var w=$,d=w.document;
- if(d.readyState!=='complete'){at(w,'DOMContentLoaded',f1);at(w,'load',f2)}else{f1({target:w});f2({currentTarget:w})};
+ if(d.readyState!=='complete'){at(w,'DOMContentLoaded',a);at(w,'load',b)}else{a({target:w});b({currentTarget:w})};
 }(window));//END.
