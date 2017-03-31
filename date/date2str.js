@@ -40,6 +40,6 @@ test
     });
 })(new Date(1490486400000), 'yyyy-MM-dd')
 
-
+Date.parse('2017-03-26')
 
 */
