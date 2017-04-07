@@ -1,0 +1,7 @@
+						const e=evt.target, o=e.classList;//clicked
+
+						if(o.toggle('on')){
+							o.remove('off');
+						}else{
+							o.add('off');
+						};
