@@ -1,0 +1,1 @@
+e.appendChild(window.getSelection().getRangeAt(0).cloneRange().cloneContents());
