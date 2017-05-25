@@ -1,7 +1,8 @@
-	function blinkIt(a,b,c){
+	function blinkIt(a,b,c,d){
 	 setTimeout(function(){
-		function swap(x,y){var c=o;c.remove(x);c.add(y);return c}
-		var o=a.classList,i=1,l=b*2,k,z='blinking',g=(o.add(z),creaIntervallo(function(){
-			var f=swap,a='blink-1',b='blink-0';if(++i>l){eliminaIntervallo(g);f(z,'blinked').remove(b)}else{if(k=!k){f(a,b)}else{f(b,a)}}
+		function swap(x,y){var e=o;e.remove(x);e.add(y);return e}
+		var o=a.classList,i=1,l=b*2,k,s='blinking',g=(o.add(s),creaIntervallo(function(){
+			var f=swap,x='blink-1',y='blink-0';if(++i>l){eliminaIntervallo(g);f(s,'blinked').remove(y);if(f=d){f(a)}}else{if(k=!k){f(x,y)}else{f(y,x)}}
 		},7E2))},c)
 	}
+
