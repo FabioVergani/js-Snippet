@@ -1,0 +1,14 @@
+const tester=(function(d){
+ const  e=d.createDocumentFragment().appendChild(d.createElement('html')),o=Object.create(null);
+ o.Webkit='-webkit-';
+ o.Moz='-moz-';
+ o.ms='-ms-';
+ o.O='-o-';
+ 
+ return function(x){
+	 r=[];
+	 for(const i in o){if((i+x) in e){r=[i,o[i]];break}};
+	 return r;
+ }
+
+})(document);
