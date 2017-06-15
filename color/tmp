@@ -1,0 +1,20 @@
+function rgbToHex(r,g,b){
+ function i(x){const s=x.toString(16);return s.length!==1?s:'0'+s}
+ let s=i(r)+i(g)+i(b), a=s[1], b=s[2], c=s[3], d=s[4], e=s[5], f=s[6], h=s[7];
+ if(a===b && c===d && e===f){
+		s=a+c+e
+    if(s.length !==7 && h===s[8) {s=s+h}
+  }
+
+ return '#'+s;
+}
+
+function pushColor(a,b,c){
+ COLORS.push(rgbToHex(a,b,c))
+}
+
+
+
+const COLORS = [];
+pushColor(255,255,255);
+console.dir(COLORS)
