@@ -1,6 +1,8 @@
 function rgb2Hex(r,g,b){
  function f(x){return ('0'+parseInt(x).toString(16)).slice(-2)}
  let s=f(r)+f(g)+f(b);
+ a=s[0],c=s[1],d=s[2],e=s[3],g=s[4],h=s[5];
+ if(a===c&&g===h&&d===e){s=a+d+g+(s[6]||'')};
  return '#'+s;
 }
 //console.log(rgb2Hex(255,255,255));
