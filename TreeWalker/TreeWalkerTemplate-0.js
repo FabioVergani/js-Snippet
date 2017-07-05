@@ -18,14 +18,13 @@ The TreeWalker.nextNode() method
 moves the current Node to the next visible node in the document order, 
 and returns the found node. It also moves the current node to this one. 
 If no such node exists, returns null and the current node is not changed.
-*/
 
 
+1:NodeFilter.FILTER_ACCEPT
+2:NodeFilter.FILTER_REJECT (For TreeWalker, child nodes are also rejected. For NodeIterator, this flag is synonymous with FILTER_SKIP.)
+3:NodeFilter.FILTER_SKIP (The children of skipped nodes are still considered. This is treated as "skip this node but not its children".)
 
 
-
-/*
-NodeFilter.FILTER_ACCEPT =1
 whatToShow
 Read only. Returns an unsigned long being a bitmask made of constants describing the types of Node that must to be presented. 
 Non-matching nodes are skipped, but their children may be included, if relevant. 
