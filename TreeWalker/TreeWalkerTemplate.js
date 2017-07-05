@@ -2,13 +2,23 @@
  const $d=$.document, $b=$d.body;
  if($b){
 	const walker=$d.createTreeWalker($b,-1,{acceptNode:function(walked){return 1;}});
-	let currentnode;
+ 	let node,nodeNext;
 	do{
-		currentnode=walker.currentNode;
-    console.log(currentnode.tagName);
-	}while(nextnode=walker.nextNode());
+		const e=node=walker.currentNode, eType=e.nodeType;
+		console.log(eType);
+    //console.log(node.tagName,nodeNext.tagName);
+	}while(nodeNext=walker.nextNode());
+	//console.warn('nodeLast',node,'nodeNext:',nodeNext);
  };
 })(window);
+//,currentnode.style.display
+
+/*
+The TreeWalker.nextNode() method 
+moves the current Node to the next visible node in the document order, 
+and returns the found node. It also moves the current node to this one. 
+If no such node exists, returns null and the current node is not changed.
+*/
 
 
 
