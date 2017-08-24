@@ -19,6 +19,15 @@ for(let e,i=o.length;i;){
  e=o[--i]
  console.log(i,e)
 }
+
+var o=['a','b','c','d','e','f','g'];
+for(let e,i=o.length;i!==0;){
+ e=o[--i]
+ console.log(i,e)
+}
+
+
+
 6 "g"
 5 "f"
 4 "e"
