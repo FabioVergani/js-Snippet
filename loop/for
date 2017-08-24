@@ -1,5 +1,18 @@
 console.clear()
 var o=['a','b','c','d','e','f','g'];
+//for(let e,i=o.length;i;){
+for(let i=o.length;i!==0;){
+ console.log(i,--i,o[i])
+}
+
+
+
+
+
+
+
+console.clear()
+var o=['a','b','c','d','e','f','g'];
 for(let e,i=0,l=o.length; i<l; ++i){
  e=o[i];
  console.log(i,e)
