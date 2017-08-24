@@ -1,0 +1,28 @@
+console.clear()
+var o=['a','b','c','d','e','f','g'];
+for(let e,i=0,l=o.length; i<l; ++i){
+ e=o[i];
+ console.log(i,e)
+}
+
+0 "a"
+1 "b"
+2 "c"
+3 "d"
+4 "e"
+5 "f"
+6 "g"
+
+console.clear()
+var o=['a','b','c','d','e','f','g'];
+for(let e,i=o.length;i;){
+ e=o[--i]
+ console.log(i,e)
+}
+6 "g"
+5 "f"
+4 "e"
+3 "d"
+2 "c"
+1 "b"
+0 "a"
