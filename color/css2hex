@@ -1,0 +1,16 @@
+(function(testo){
+ function s2h(x){return('0'+parseInt(x).toString(16)).slice(-2)}
+ 
+ function r(s,r,g,b){
+	var f=s2h,a=f(r),c=f(g),d=f(b);
+	f=d.charAt(1);
+	if(f===d.charAt(0)){const e=c.charAt(1);if(e===c.charAt(0)){const h=a.charAt(1);if(h===a.charAt(0)){a=h;c=e;d=f}}};
+	return '#'+a+c+d;
+ }
+ 
+ const p=/rgb\((\d+),\s*(\d+),\s*(\d+)\s*\)/g;
+ var s=testo.replace(p,r);
+ console.log(s);
+
+})('rgb(0, 0, 0) ,rgb(0,82,0) ');
+//
