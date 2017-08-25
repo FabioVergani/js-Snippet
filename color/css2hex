@@ -8,13 +8,9 @@ let rgb2hex=(function(){
 	if(i===s[0]){s=m[2];const e=s[1];if(e===s[0]){s=m[1];s=s[1];if(s===s[0]){m[1]=s;m[2]=e;m[3]=i}}};
 	return m.join('');
  }
- 
- const p=/rgb\((\d+),\s*(\d+),\s*(\d+)\s*\)/g;
- 
- return function(s){return s.replace(p,r)}
+
+ const a=/rgb\(255,\s*255,\s*255\s*\)/g,b=/rgb\(0,\s*0,\s*0\s*\)/g,c=/rgb\((\d+),\s*(\d+),\s*(\d+)\s*\)/g;
+ return function(s){return s.replace(a,'#fff').replace(b,'#000').replace(c,r)}
 })();
-
-
-
-//console.log(rgb2hex('rgb(0, 0, 0) ,rgb(0,82,0) '));
-
+//
+console.log(rgb2hex('rgb(0, 0, 0) , rgb(255, 255, 255) ,rgb(0,82,0) '));
