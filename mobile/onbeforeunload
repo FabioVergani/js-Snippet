@@ -8,3 +8,16 @@ window.onbeforeunload = function(){
   }
   return message;
 }
+
+
+You can't detect navigation type on beforeunload event or with any other method because it is browser dependent. But I can provide you a way to detect back or refresh after the page loaded. I hope it will be useful.
+
+Please check performance navigation
+
+if (performance.navigation.type == PerformanceNavigation.TYPE_RELOAD){
+ //Reload
+}
+
+if (performance.navigation.type == PerformanceNavigation.TYPE_BACK_FORWARD){
+ //Back Button
+}
