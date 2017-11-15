@@ -1,0 +1,19 @@
+function handleVisibilityChange() {
+  if (document.hidden) {
+    logMessage('Document hidden.');
+  } else {
+    logMessage('Document visible. Trigger refresh.');
+  }
+}
+
+function logMessage(message) {
+  var d = new Date();
+  var timestamp = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+  var p = document.createElement('p');
+  p.innerText = timestamp + ' - ' + message;
+  document.body.appendChild(p);
+}
+
+document.addEventListener("visibilitychange", handleVisibilityChange);
+
+logMessage('Document is ' + document.visibilityState + '. Try minimizing the browser or changing tabs.');
