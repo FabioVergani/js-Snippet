@@ -1,0 +1,6 @@
+//console.dir(g);
+for(e in g){
+	let s=e.replace(/f*[a-z][a-z]b*|(^..|_)(.)[^_]+/g, '$2');
+	//console.log(e[0]+s,'=',e);
+	g[e[0] + s = g[e]
+};
