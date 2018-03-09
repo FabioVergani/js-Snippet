@@ -1,0 +1,7 @@
+javascript:($=>{
+	let d=$.document;
+	const x=d.createDocumentFragment().appendChild(d.body.cloneNode(true));
+	x.normalize();//In a normalized sub-tree there are no text nodes adjacent or empty.
+	d=$.open().document;
+	d.documentElement.replaceChild(x,d.body);
+})(window);
