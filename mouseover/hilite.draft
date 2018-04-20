@@ -1,0 +1,76 @@
+(w =>{
+	const d=w.document,b=d.body,onBody=b.addEventListener;
+
+	//..
+	const strip_hilite=(a=>{
+		const r='.hilited{outline:3px solid red;}';
+		let l=a.length;
+		if(l){
+			s=a[--l];
+			const m=s.cssRules,
+			i=s.insertRule(r,m.length),
+			p=new RegExp('\\s*.hilited\\s*{\\s*outline\\s*:\\s*3px\\s*solid\\s*red\\s*;?\\s*}\\s*','i');
+			l=()=>{
+				const x=m[i];
+				if(x && p.test(x.cssText)){
+					s.deleteRule(i);
+				}else{
+					for(let i=0,l=m.length;i<l;++i){//console.log(m[i].cssText,p,p.test(m[i].cssText));
+						if(p.test(m[i].cssText)){
+							s.deleteRule(i);
+						};
+					};
+				};
+			};
+		}else{//console.warn('no styles!');
+			const x=d.createDocumentFragment().appendChild(d.createElement('style'));
+			x.appendChild(d.createTextNode(r));
+			d.head.appendChild(x);
+			l=()=>{x.parentNode.removeChild(x)};
+		};
+		return l;
+	})(d.styleSheets);
+	//..
+	const add_hilite=(o)=>{
+		const e=o.target;
+		console.dir(e);
+
+		rem_hilite(e.parentElement);
+
+			o.target.classList.add('hilited');
+
+
+	};
+	//
+	const rem_hilite=(e)=>{
+		//const e=o.target;
+if(e){
+			e.classList.remove('hilited');
+			if(/\s*/.test(e.className)){
+				e.removeAttribute('class');
+			};
+}
+
+
+	};
+	//
+	onBody('mouseover',add_hilite);
+	//onBody('mouseout',rem_hilite);
+	//
+	onBody('click',(o)=>{
+		o.preventDefault();
+		o.stopImmediatePropagation();
+		const e=o.target;
+		if(e.nodeName!=='BODY'){
+			console.info('clicked:%o',e);
+			//hide?
+		};
+	});
+	//
+	onBody('keyup',(o)=>{
+		console.info('which:',o.which);
+		switch(o.which ){
+		};
+	});
+	//
+})(window);
