@@ -1,0 +1,40 @@
+A trailing comma in array syntax is simply ignored.
+
+[ 1, 2, 3, ] // no hole at the end, just a regular trailing comma
+Empty values between commas create holes and thus sparse arrays - these are known as: holes, empty or an elision (apparently)
+
+[ 1, , 2 ] // hole at index(1) aka empty
+Detecting a hole is done using array.hasOwnProperty(index)
+
+[ 1, , 2 ].hasOwnProperty(1) // false: index(1) does not exist, thus a hole
+Iterating methods, such as map, forEach, every, etc won't call your callback for the hole
+
+const a = new Array(1000);
+let ctr = 0;
+a.forEach(() => ctr++);
+console.log(ctr); // 0 - the callback was never called
+map will return a new array including the holes
+
+[ 1, , 2 ].map(x => x * x) // [ 1, <empty>, 4 ]
+filter will return a new array excluding the holes
+
+[ 1, , 2 ].filter(x => true) // [ 1, 2 ]
+keys and values return iterator functions that do iterate over hole (ie. includes them in a for key of array.keys())
+
+const a = [ 'a', , 'b' ];
+for (let [index, value] of a.entries()) {
+  console.log(index, value);
+}
+/* logs:
+- 0 'a'
+- 1 undefined
+- 2 'b'
+*/
+Array spread [...array] will transform holes into undefined (which will also increase memory and affect performance)
+
+[...[ 'a', , 'b' ]] // ['a', undefined, 'b']
+Large sparse array creation is fast - much faster than Array.from.
+
+const length = 10000000; // 10 million
+new Array(length); // quick
+Array.from({ length }) // less quick
