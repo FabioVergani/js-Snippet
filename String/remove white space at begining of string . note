@@ -1,0 +1,18 @@
+			e="          xxx";
+			while(e.charAt(0)==='\u0020'){
+					e=e.substring(1,j=e.length)
+				console.log(e)
+			};
+			console.log(e)
+
+         xxx
+VM1311:4         xxx
+VM1311:4        xxx
+VM1311:4       xxx
+VM1311:4      xxx
+VM1311:4     xxx
+VM1311:4    xxx
+VM1311:4   xxx
+VM1311:4  xxx
+VM1311:4 xxx
+VM1311:6 xxx
