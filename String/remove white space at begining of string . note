@@ -16,3 +16,18 @@ VM1311:4   xxx
 VM1311:4  xxx
 VM1311:4 xxx
 VM1311:6 xxx
+
+rgx:
+
+ltrim
+
+  str.replace(/^\s+/g, '');
+
+
+rtrim
+
+  return str.replace(/\s+$/g, '');
+
+
+str.replace(/^\s+|\s+$/g, '');
+
