@@ -1,0 +1,30 @@
+
+console.dir([
+parseInt(undefined),// NaN
+parseInt(NaN),// NaN
+parseInt('NaN'),//  NaN
+parseInt('blabla'),// NaN
+parseInt('   x    '),// NaN
+parseInt(0 / 0),// NaN
+parseInt({}),// NaN
+parseInt([1,2,3]),// 1
+]);
+
+console.dir([
+parseInt(false),// NaN
+parseInt(true),// NaN
+parseInt(null),// NaN
+parseInt(Infinity),// NaN
+parseInt(-Infinity),// NaN
+parseInt(-1),//-1
+parseInt(.4),// 0
+parseInt(.5),// 0
+parseInt(37),//37
+parseInt('37'),// 37
+parseInt('37.37'),// 37
+parseInt([]),// NaN
+parseInt([0]),//0
+parseInt(''),//NaN
+parseInt(' '),// NaN
+parseInt('       ')// NaN
+]);
