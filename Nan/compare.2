@@ -1,0 +1,40 @@
+console.dir([
+undefined,
+NaN,
+'NaN',
+'blabla',
+'   x    ',
+0 / 0,
+{},
+[1,2,3],
+false,
+true,
+null,
+Infinity,
+-Infinity,
+-1,
+-.4,
+.4,
+.5,
+37,
+'37',
+'37.37',
+[],
+[0],
+'',
+' ',
+'       '
+].map(x=>{
+	var r=x;
+	if(isNaN(x)){
+		r=0;
+	}else{
+		r=parseInt(x);
+		if(isNaN(r)){
+			r=x>>>0
+		};
+	};
+	//x>>>0
+	return  r+'//'+x+', floor:'+Math.floor(x);
+
+}).join('\n'));
