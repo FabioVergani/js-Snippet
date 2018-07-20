@@ -1,0 +1,58 @@
+console.dir([
+undefined,
+NaN,
+'NaN',
+'blabla',
+'   x    ',
+0 / 0,
+{},
+[1,2,3],
+false,
+true,
+null,
+Infinity,
+-Infinity,
+-1,
+.4,
+.5,
+37,
+'37',
+'37.37',
+[],
+[0],
+'',
+' ',
+'       '
+].map(x=>{
+
+	return [x,isNaN(x),parseInt(x),x>>>0]
+
+}));
+
+/*
+,true,NaN,0
+NaN,true,NaN,0
+NaN,true,NaN,0
+blabla,true,NaN,0
+   x    ,true,NaN,0
+NaN,true,NaN,0
+[object Object],true,NaN,0
+1,2,3,true,1,0
+false,false,NaN,0
+true,false,NaN,1
+,false,NaN,0
+Infinity,false,NaN,0
+-Infinity,false,NaN,0
+-1,false,-1,4294967295
+0.4,false,0,0
+0.5,false,0,0
+37,false,37,37
+37,false,37,37
+37.37,false,37,37
+,false,NaN,0
+0,false,0,0
+,false,NaN,0
+ ,false,NaN,0
+       ,false,NaN,0
+
+*/
