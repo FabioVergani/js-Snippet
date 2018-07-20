@@ -1,5 +1,6 @@
 Number.isInteger||(Number.isInteger=function(x){return typeof(x)==='number' && isFinite(x) && Math.floor(x)===x});
 
+//Number.isNaN||(Number.isNaN=function(x){return x!==x});
 console.clear();
 [
 0,//true
