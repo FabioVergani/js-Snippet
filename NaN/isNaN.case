@@ -1,0 +1,34 @@
+ //isNaN !== isNaN;// true because NaN is the only value in javascript which is not equal to itself.
+
+
+
+isNaN(NaN),// true
+isNaN('NaN'),//  true
+isNaN('blabla'),// true
+isNaN('   x    ')// false
+isNaN(0 / 0),// true
+isNaN({}),// true
+isNaN([1,2,3]),// true
+]);
+
+
+
+console.dir([
+isNaN(false),// false
+isNaN(true),// false
+isNaN(null),// false
+isNaN(Infinity),// false
+isNaN(-Infinity),// false
+isNaN(-1),// false
+isNaN(.4),// false
+isNaN(.5),// false
+isNaN(37),// false
+isNaN('37'),// false
+isNaN('37.37'),// false
+isNaN([]),// false
+isNaN([0]),// false
+isNaN(''),// false
+isNaN(' '),// false
+isNaN('       ')// false
+]);
+
