@@ -1,6 +1,8 @@
 //FabioVergani/js-Snippet
 /*
-#setCookie
+#Cookies
+
+ setCookie
 
 	arguments note:
 		v(alue): saved will be URI encoded (commas, semicolons, whitespace, '+' ...)
@@ -13,12 +15,23 @@
 		setCookie('x',123) ->x=123;expires=Mon, 22 Jul 2019 13:35:33 GMT;path=/;domain=
 		setCookie('y','123; 66');//scade tra un anno
 
-#getCookie
+ getCookie
 
 	result note:
 		nohost->false,
 		nocookies->'',
 		nomatches->null,
+
+ test
+	if(getCookie('pippo')!=='1'){
+		if(setCookie('pippo',1)){
+			console.info('pippo upadate');
+		}else{
+			console.warn('pippo',getCookie('pippo'));
+		};
+	}else{
+		console.info('pippo===1');
+	};
 
 */
 (w=>{
@@ -56,14 +69,10 @@
 		}
 	});
 	//
-	console.dir(setCookie('pippo',30));
-	console.dir(getCookie('pippo'));
 
 
 })(window);
-//
-console.dir(setCookie('pluto',60));
-console.dir(getCookie('pluto',60));
+//...
 
 
 
