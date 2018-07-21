@@ -1,0 +1,53 @@
+
+//true:
+[
+-1E3,//-1000
+-2.1,//-2
+-2,//-2
+-1,//-1
+-.9,//0
+-.6,//0
+-.5,//0
+-.4,//0
+-.1,//0
+0,//0
+Number(),//0
+.1,//0
+.4,//0
+.5,//0
+.6,//0
+.9,//0
+1,//1
+2,//2
+2.1,//2.1
+Number(666),//666
+1E3//1000
+].forEach(x=>console.log(x,'isFinite →',isFinite(x)));
+
+[
+null,//true
+undefined,//false
+'','\r','\n','\t',' ','   ',//true
+'x',' x ','  x  ',//false
+[],[''],['\r'],['\n'],['\t'],[' '],//true
+[' x '],//false
+{},{a:1},{a:1,b:2},//false
+Object,//false
+-Infinity,//false
+Infinity//false
+].forEach(x=>console.log(x,'isFinite →',isFinite(x)));
+
+
+//true
+const MaxSafeInteger=Number.MAX_SAFE_INTEGER;
+[
+Math.PI,
+-MaxSafeInteger,
+-MaxSafeInteger-1,
+MaxSafeInteger,
+MaxSafeInteger+1
+].forEach(x=>console.log(x,'isFinite →',isFinite(x)));
+
+//Cannot convert object to primitive value
+isFinite(Object.create(null))
+
