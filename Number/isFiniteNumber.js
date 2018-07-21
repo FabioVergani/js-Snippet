@@ -8,6 +8,16 @@ isNaN(x)
 */
 
 //isFiniteNumber=function(x){return x!==undefined && +x===x  && x!==Infinity && x!==-Infinity});
+//isFiniteNumber=x=>x!==undefined && +x===x  && x!==Infinity && x!==-Infinity;
 
-const isFiniteNumber=x=>x!==undefined && +x===x  && x!==Infinity && x!==-Infinity;
-isFiniteNumber(1);
+const val=x=>x!==undefined && x!==null;
+//
+const isFiniteNumber=x=>{
+	let i=false;
+	try{i=val(x) && +x===x && x!==Infinity && x!==-Infinity}finally{return i}
+};
+
+console.log(isFiniteNumber(1));
+console.log(isFiniteNumber(Object.create(null)));
+
+
