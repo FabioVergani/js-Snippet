@@ -7,7 +7,7 @@ isNaN(x)
 +(-Infinity)===-Infinity//true
 */
 
-//isFiniteNumber=function(x){return +x===x  && x!==Infinity && x!==-Infinity});
+//isFiniteNumber=function(x){return x!==undefined && +x===x  && x!==Infinity && x!==-Infinity});
 
-const isFiniteNumber=x=>x===x  && x!==Infinity && x!==-Infinity;
+const isFiniteNumber=x=>x!==undefined && +x===x  && x!==Infinity && x!==-Infinity;
 isFiniteNumber(1);
