@@ -21,19 +21,10 @@
 		nohost->false,
 		nocookies->'',
 		nomatches->null,
-
- test
-	if(getCookie('pippo')!=='1'){
-		if(setCookie('pippo',1)){
-			console.info('pippo upadate');
-		}else{
-			console.warn('pippo',getCookie('pippo'));
-		};
-	}else{
-		console.info('pippo===1');
-	};
+		fail->0
 
 */
+
 (w=>{
 	const Host=w.location.host,
 	decodeURI=w.decodeURIComponent,
@@ -45,15 +36,7 @@
 	nextDayDate=w.nextDayDate||(w.nextDayDate=x=>{const o=new Date();o.setDate(o.getDate()+toPositiveInteger(x,1));return o}),
 	getCookie=w.getCookie||(w.getCookie=(n)=>{//name
 		let s=Host;
-		if(s!==''){
-			s=d.cookie;
-			if(s!==''){
-				s=s.match('(?:^|;)(?:\\s*'+n+'=)([^;]+)');
-				if(s!==null){s=decodeURI(s[1])}
-			}
-		}else{
-			s=false
-		};
+		if(s!==''){s=d.cookie;if(s!==''){s=s.match('(?:^|;)(?:\\s*'+n+'=)([^;]+)');if(s!==null){s=decodeURI(s[1])}}}else{s=false};
 		return s
 	}),
 	setCookie=w.setCookie||(w.setCookie=(n,v,e=365,p='/',h=Host,s)=>{//name, value, expireNdaysfromtoday, path, host, secure
@@ -63,16 +46,49 @@
 			t=t(n)+'='+v+';expires='+nextDayDate(e).toUTCString()+';path='+p+';domain='+h;
 			if(s===true){t+=';secure'};
 			d.cookie=t+';'
-			return getCookie(n)===v
+			return getCookie(n)===v||0
 		}else{
 			return false
 		}
+	}),
+	optInCookie=w.optInCookie||(w.optInCookie=(n,v,a,c)=>{//name, value-control, ask2confirm, confirmed
+		let s=getCookie(n);
+		if(s){c(n,s)}else if(s===null && (s=a(n))){s=setCookie(n,v)};
+		return s;
 	});
-	//
-
-
+	//..
 })(window);
-//...
+//=============================================================================
+
+
+
+
+
+
+
+
+
+
+	let result=optInCookie(
+		'UECL',
+		1,
+		n=>{//cookie_name
+			console.info('ask to confirm cookie: '+n);
+			return confirm('accetti il cookie ?');
+		},
+		n=>{//cookie_name
+			console.info('cookie: '+n+' nas been confirmed.');
+		}
+	);
+	//
+	console.info('result:',result);
+
+
+
+
+
+
+
 
 
 
