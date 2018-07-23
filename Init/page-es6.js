@@ -10,14 +10,14 @@
 		const f={
 			DOMContentLoaded:e=>{
 				const d=e.target;
-				swapClass(d.body,['js-no'],['js','loading']);
+				swapClass(d.documentElement,['js-no'],['js','init-start']);
 			},
 			load:e=>{
-				const d=e.target,page=d.body;//,$id=x=>d.getElementById(x)
+				const d=e.target,page=d.documentElement;//,page=d.body;$id=x=>d.getElementById(x)
 				//
 				//page.appendChild($imported('blog-post'));
 				//...
-				swapClass(page,['loading'],['loaded']);
+				swapClass(page,['init-start'],['init-end']);
 			}	
 		},
 		o={target:d};
