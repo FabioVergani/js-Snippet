@@ -1,17 +1,19 @@
 (function(w){
-	var d=w.document,e=false,f=w.Function;
-	d.head||(d.head=d.getElementsByTagName('head')[0]);
+	var d=w.document,e=false;
 	try{
-		new f('(a=0)=>a');
+		new w.Function('(a=0)=>a');
 		e=true
 	}finally{
 		if(e){
-			const e=d.createDocumentFragment().appendChild(d.createElement('script'));
-			f=d.getElementById('init').getAttribute("src");
-			e.src=f.substring(0,f.lastIndexOf('/'))+'/get/page-es6.js';
+			e=d.getElementById('init');
+			const s=e.getAttribute("src");
+			e.remove();
+			e=d.createDocumentFragment().appendChild(d.createElement('script'));
+			e.src=s.substring(0,s.lastIndexOf('/'))+'/get/page-es6.js';
 			d.head.appendChild(e);
 		}else{
 			//alert("!ES6")
+			//d.head||(d.head=d.getElementsByTagName('head')[0]);
 		};
 	};
 })(window);
