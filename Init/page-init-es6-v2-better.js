@@ -11,7 +11,7 @@
 			r=d.scripts[0];//nb: questo è sempre il primo script della pagina
 			p=r.getAttribute('src');
 			h.removeChild(r);
-			p=p.substring(0,p.lastIndexOf('/'))+'/get/page';//path-prefix
+			p=p.substring(0,p.lastIndexOf('/'))+'/page';//path-prefix
 			try{
 				new w.Function('(a=0)=>a');
 				p+='-es6'
@@ -27,5 +27,6 @@
 	}else{
 		m[1]='page-unknown'
 	};
-	o[p='className']=o[p].replace('js-no',m.join('\u0020'));
+	r='\u0020';
+	o[p='className']=o[p].replace('notify'+r,'').replace('js-no',m.join(r));
 })(window);
