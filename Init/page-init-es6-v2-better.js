@@ -1,45 +1,31 @@
 (function(w){
-	var o=w.Element.prototype, p='remove', h=p in o, d=o[p], k='js-no';
-
-	if(h!==true||!d){
-		o[p]=function(){
-			var e=this,x=e.parentNode;
-			if(x!==null){
-				x.removeChild(e)
-			}
-		}
-	};
-	h='js-init';
-	if(o=(d=w.document).getElementById('page')){
-		p='classList';
-		if(p in o){
-			o[p].replace(k,h)
-		}else{
-			o[p='className']=o[p].replace(k,h)
-		};
-		if(h=((p='head') in d)?d[p]:(d[p]=d.getElementsByTagName(p)[0])){
-			o=d.getElementById('init');
-			p=o.getAttribute('src');
-			o.remove();
-			p=p.substring(0,p.lastIndexOf('/'))+'/get/page';
+	var m=['js-init'],
+	d=w.document,
+	r=function(x){return d.getElementsByTagName(x)[0]},
+	p='documentElement',
+	h=d[p],
+	o=h||(d[p]=r('html'));//ora è sicuramente disponibile 'document.documentElement'
+	//
+	if(o.id==='page'){
+		if(h=d.head||(d[p]=r(p))){//ora è sicuramente disponibile 'document.head'
+			r=d.scripts[0];//nb: questo è sempre il primo script della pagina
+			p=r.getAttribute('src');
+			h.removeChild(r);
+			p=p.substring(0,p.lastIndexOf('/'))+'/get/page';//path-prefix
 			try{
 				new w.Function('(a=0)=>a');
 				p+='-es6'
+			}catch(r){//console.warn(r);
+				m[1]='es6-no'
 			}finally{
-				try{
-					o=d.createElement('script');
-					d.createDocumentFragment().appendChild(o)
-				}finally{
-					o.src=p+'-dev.js';//-dev
-					h.appendChild(o)	
-				}
+				(d[r='createDocumentFragment']||(d[r]=function(){return d.createElement('span')}));
+				d[r]().appendChild(r=d.createElement('script'));//paranoid polyfill :D
+				r.src=p+'-dev.js';//nb:omit '-dev' in produzione
+				h.appendChild(r)
 			}
 		}
 	}else{
-		p='documentElement';
-		o=d[p]||(d[p]=d.getElementsByTagName('html')[0]);
-		p=o.className.replace(k,h);
-		o.className=p+' dom-unknown';
+		m[1]='page-unknown'
 	};
-
+	o[p='className']=o[p].replace('js-no',m.join('\u0020'));
 })(window);
