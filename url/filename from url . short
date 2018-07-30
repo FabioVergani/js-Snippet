@@ -1,0 +1,1 @@
+String(window.location).split('/').pop().split('.ext')[0]
