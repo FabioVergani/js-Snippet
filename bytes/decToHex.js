@@ -1,3 +1,4 @@
+//Transform an integer into a string in hexadecimal.
 function decToHex(a,b){//dec,bytes
 	const f=String.fromCharCode;
 	let s='',i=0;
