@@ -25,19 +25,19 @@ const string2buf=function(s){
 		}else{
 			const a=c>>>6,G=63,b=c&G;//0x3f
 			if(c<2048){
-				m[n]=192|a;//0xC0
+				m[n]=192|a//0xC0
 			}else{
 				const d=c>>>12,e=a&G;
 				if(c<65536){
-					m[n]=224|d;//0xE0
+					m[n]=224|d//0xE0
 				}else{
 					m[n]=240|(c>>>18);//0xf0
-					m[++n]=v|(d&G);
+					m[++n]=v|(d&G)
 				};
-				m[++n]=v|e;
+				m[++n]=v|e
 			};
 			m[++n]=v|b
 		}
 	});
-	return u;
+	return u
 };
