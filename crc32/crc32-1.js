@@ -17,3 +17,30 @@ function crc32(a,b){//str,crc
 
 
 //crc32('xxxxxxxx') 1747789431
+
+
+/*
+
+const crcTable=(m=>{
+	let i=256;
+	while(--i!==0){
+		let j=0,c=i;
+		while(j<8){
+			c=c&1?3988292384^c>>>1:c>>>1;//0xEDB88320
+			++j
+		};
+		m[i]=c
+	};
+	return m
+})(Array(256));
+//
+const crc32=(a,b)=>{//str,crc
+	const l=a.length,m=crcTable;
+	let i=0,c=b^-1;
+	while(i<l){
+		c=c>>>8^m[(c^a.charCodeAt(i))&255];//0xFF
+		++i
+	};
+	return c^-1
+};
+*/
