@@ -1,3 +1,12 @@
 for(let e, i=0, m=[], l=m.length; i<l, e=m[i]; ++i){
  console.log(e)
 };
+
+
+/*
+
+			for(let i=0,m=[],l=m.length;i<l;++i){
+				console.log(i);
+			}
+
+*/
