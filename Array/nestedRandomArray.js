@@ -1,11 +1,8 @@
-const randomArray = (arr = []) =>
-  Math.random() * 10 < 9
-    ? randomArray([...arr, Math.floor(Math.random() * 10)])
-    : arr
-
-const nestedRandomArray = (depth = 0, arr = [], fillWith) =>
-  depth == 0
-    ? arr
-    : nestedRandomArray(depth - 1, [...randomArray(), arr])
-
-const array = nestedRandomArray(3000)
+const randomArray=(M=>{
+	const r=M.random,
+	f=(a=[])=>{const n=r();return n<.8?(a[a.length]=n*10|0,f(a)):a},
+	g=f.nested=(i=0,a=[])=>i!==0?g(--i,[f(), a.concat(f())]):a;
+	return f
+})(Math);
+//console.dir(randomArray())
+console.dir(randomArray.nested(6))
