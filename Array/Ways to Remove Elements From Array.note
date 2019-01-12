@@ -1,0 +1,163 @@
+
+https://jsperf.com/removing-items-from-array
+https://jsperf.com/array-splice-vs-reassign-and-shift
+
+index = a.indexOf(b);
+if (index >= 0) {
+  a[index] = a[0];
+  a.shift();
+}
+
+
+Searching and Removing a Specific Element by Value
+["bar", "baz", "foo", "qux"]
+ 
+list.splice( list.indexOf('foo'), 1 );
+// Find the index position of "foo," then remove one element from that position
+
+
+
+["bar", "baz", "foo", "foo", "qux"]
+ 
+for( var i = list.length-1; --i--;){
+if ( list[i] === 'foo') list.splice(i, 1);
+}
+ 
+["bar", "baz", "qux"]
+
+
+
+for(var i = 0; i < arr.length; i++ ){
+       if(arr[i] === item){
+        arr.splice(i, 1);
+        i--; 
+   }
+
+
+
+To remove multiple occurrences, I believe this would be much faster than looping through the whole array:
+
+var index = array.indexOf("b");
+while (index > -1) {
+    array.splice(index,1);
+    index = array.indexOf("b");
+}
+This can easily be put into a function as such:
+
+function removeValueFromArray(value, array) {
+    var index = array.indexOf(value);
+    while (index > -1) {
+        array.splice(index,1);
+        index = array.indexOf(value);
+    }
+    return array;
+}
+
+
+
+
+
+
+
+
+#Removing Elements from End of a JavaScript Array
+
+var ar = [1, 2, 3, 4, 5, 6];
+ar.length = 5; // set length to remove elements
+console.log( ar ); //  [1, 2, 3, 4,5]
+
+var ar = [1, 2, 3, 4, 5, 6];
+ar.pop(); // returns 6
+console.log( ar ); // [1, 2, 3, 4, 5]
+
+
+#Removing Elements from Beginning
+
+var ar = ['zero', 'one', 'two', 'three'];
+ar.shift(); // returns "zero"
+console.log( ar ); // ["one", "two", "three"]
+
+
+
+Using Splice to Remove Array Elements
+
+var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+var removed = array.splice(2,2);
+
+/*
+removed === [3, 4]
+array === [1, 2, 5, 6, 7, 8, 9, 0]
+*/
+
+["bar", "baz", "foo", "qux"]
+
+list.splice(0, 2) 
+// Starting at index position 0, remove two elements ["bar", "baz"] and retains ["foo", "qux"].
+
+
+
+Removing Array Items By Value Using Splice
+var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+for( var i = 0; i < array.length-1; i++){ 
+   if ( array[i] === 5) {
+     arr.splice(i, 1); 
+   }
+}
+
+//=> [1, 2, 3, 4, 6, 7, 8, 9, 0]
+
+
+
+Using the Array filter Method to Remove Items By Value
+
+var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+var filtered = array.filter(function(value, index, arr){
+
+    return value > 5;
+
+});
+
+//filtered => [6, 7, 8, 9]
+//array => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+
+
+Explicitly Remove Array Elements Using the Delete Operator
+
+var ar = [1, 2, 3, 4, 5, 6];
+delete ar[4]; // delete element with index 4
+console.log( ar ); // [1, 2, 3, 4, undefined, 6]
+alert( ar ); // 1,2,3,4,,6
+
+
+
+
+
+If the order of the items in the array doesn't matter, then simply assign the last item in the array to the one you want to overwrite and then delete it by reducing the .length.
+
+function unordered_remove(arr, i) {
+    if (i <= 0 || i >= arr.length) {
+        return;
+    }
+    if (i < arr.length - 1) {
+        arr[i] = arr[arr.length-1];
+    }
+    arr.length -= 1;
+}
+This is much faster because it doesn't need to reindex and is good for situations where the order doesn't matter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
