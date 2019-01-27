@@ -1,0 +1,56 @@
+(w=>{
+	const d=w.document,f=d=>{
+		if(null!==d.body){
+			const nodesFound=[
+				null,
+				[],//1: ELEMENT
+				null,//2: ATTRIBUTE*
+				[],//3: TEXT
+				[],//4: CDATA-SECTION
+				null,//5: ENTITY-REFERENCE*
+				null,//6: ENTITY*
+				[],//7: PROCESSING-INSTRUCTION
+				[],//8: COMMENT
+				[],//9: DOCUMENT
+				[],//10: DOCUMENT-TYPE → d.doctype
+				[],//11: DOCUMENT-FRAGMENT
+				null//12: NOTATION*
+			],
+			tagsMap=new w.Map(),
+			iterator=d.createNodeIterator(d.documentElement,-1);
+			//
+			let e;
+			while(null!==(e=iterator.nextNode())){
+
+				let i=e.nodeType,m=nodesFound[i];
+				if(null!==m){
+					m[m.length]=e;
+					if(1===i){
+						if((m=tagsMap).has(i=e.tagName)){
+							(m=m.get(i))[m.length]=e
+						}else{
+							m.set(i,[e])
+						}
+					};
+					//
+				};
+			}
+			//
+			e=13;
+			do{
+				const a=nodesFound,m=a[--e];
+				if(null===m||0===m.length){delete a[e]}
+			}while(0!==e);
+			//
+			console.dir(nodesFound);
+			console.dir(tagsMap);
+			//
+		}
+	};
+	if(d.readyState!=='complete'){
+		const g=o=>{w.removeEventListener('load',g);f(o.target)};
+		w.addEventListener('load',g)
+	}else{
+		f(d)
+	}
+})(window);
