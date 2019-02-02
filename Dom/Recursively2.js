@@ -1,13 +1,12 @@
 //Recursively!
-const walkDom=(depth,nth,node)=>{
-	console.log('\t'.repeat(depth),nth,node.tagName||'text');
-
-	if((node=node.firstChild) && 1===node.nodeType){
+const walkDom=(depth,nth,e)=>{
+	console.log('\t'.repeat(depth),nth,e.tagName||e.nodeValue);
+	if((e=e.firstChild) && 1===e.nodeType){
 		++depth
 	};
-	while(null!==node){
-		walkDom(depth,nth,node);
-		if(null!==(node=node.nextSibling) && 1===node.nodeType){
+	while(null!==e){
+		walkDom(depth,nth,e);
+		if(null!==(e=e.nextSibling) && 1===e.nodeType){
 			++nth
 		}
 	}
