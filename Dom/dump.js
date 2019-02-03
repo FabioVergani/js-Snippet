@@ -1,4 +1,4 @@
-	(w=>{
+	(w1=>{
 		const ready=(w,f)=>{
 			const d=w.document;
 			if(d.readyState!=='complete'){
@@ -12,9 +12,9 @@
 			}
 		};
 		//
-		ready(w,d1=>{
+		ready(w1,d1=>{
 			const frag=d1.createDocumentFragment(),
-			walkDom=(branch,depth,nth,e)=>{
+			walk=(branch,depth,nth,e)=>{
 				if(0!==e.offsetHeight){
 					switch(e.nodeType){
 						case 3:
@@ -29,7 +29,7 @@
 						++depth
 					};
 					while(null!==e){
-						walkDom(branch,depth,nth,e);
+						walk(branch,depth,nth,e);
 						if(null!==(e=e.nextSibling) && 1===e.nodeType){
 							++nth
 						}
@@ -37,11 +37,24 @@
 				}
 			};
 			//
-			walkDom(frag,0,1,d1.body);
+			walk(frag,0,1,d1.body);
 			//
 			ready(d1.defaultView.open(),d2=>{
-				d2.title=d1.title;
-				d2.documentElement.firstElementChild.replaceWith(frag.firstElementChild);
+				let x=d1,t=x.title;
+				d2.title=t||x.URL;
+				if(x=x.doctype){
+					x=x.cloneNode()
+				}else{
+					x=d2.implementation.createDocumentType('html',null,null)
+				};
+				if(t=d2.doctype){
+					d2.replaceChild(t,x)
+				}else{
+					d2.insertBefore(x,d2.childNodes[0])
+				};
+				if(x=frag.firstElementChild){
+					d2.body.replaceWith(x)
+				}
 			})
 		})
 	})(window);
