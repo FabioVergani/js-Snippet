@@ -47,14 +47,9 @@
 				console.dir(matrix);
 				//
 				ready(w1.open(),d2=>{
-					let x=d1;
-					if(x=x.doctype){
-						x=x.cloneNode()
-					}else{
-						x=d2.implementation.createDocumentType('html',null,null)
-					};
-					const t=d2.doctype;
-					if(t){
+					let x=d1,t=x.doctype;
+					x=t?t.cloneNode():d2.implementation.createDocumentType('html',null,null);
+					if(t=d2.doctype){
 						d2.replaceChild(t,x)
 					}else{
 						d2.insertBefore(x,d2.childNodes[0])
