@@ -1,0 +1,2 @@
+i=0|Math.random()*100 // before
+i=new Date%100        // after
