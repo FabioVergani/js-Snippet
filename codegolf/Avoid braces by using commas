@@ -1,0 +1,2 @@
+if (i<10) {m+=5;n-=3} // before
+if (i<10) m+=5,n-=3;  // after
