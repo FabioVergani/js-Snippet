@@ -1,0 +1,9 @@
+i="10";
+j="20";
+
+k=parseInt(i)+parseInt(j);  // before
+k=i- -j;                    // after
+
+k=parseInt(i);              // before
+k=i|0;                      // after
+k=~~i;                      // after (alternative)
