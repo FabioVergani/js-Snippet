@@ -1,0 +1,2 @@
+now=+new Date() // before
+now=+new Date   // after
