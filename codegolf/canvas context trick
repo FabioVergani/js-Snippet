@@ -1,0 +1,29 @@
+a.beginPath
+a.fillRect
+a.lineTo
+a.stroke
+a.transform
+a.arc                                  // before
+
+for(Z in a)a[Z[0]+(Z[6]||Z[2])]=a[Z];
+a.ba
+a.fc
+a.ln
+a.sr
+a.to
+a.ac                                   // after
+If the demo uses lot of calls to the canvas drawing functions, this method reduce all the name methods to short calls, reducing the overall chars usage. In some cases, a modified version of the hash can be used:
+
+for($ in a)a[$[0]+$[6]]=a[$];
+But test it carefully in all browsers. This one has a more limited function selection, with different performance in each browser.
+
+Setting canvas width/height also clears it
+c.width=c.height=o;
+...
+c.clearRect(0,0,o,o);   // inside animation loop
+...                     // before
+
+...
+c.width=c.height=o;     // inside animation loop
+...                     // after
+This saves one complete sentence if the demo has animation with clearing the canvas on every frame.
