@@ -1,0 +1,2 @@
+var i=1,j=2,k;k=i;i=j;j=k // before
+var i=1,j=2;i=[j,j=i][0]  // after
