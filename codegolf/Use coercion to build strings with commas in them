@@ -1,0 +1,6 @@
+"rgb("+(x+8)+","+(y-20)+","+z+")"; // before
+"rgb("+[x+8,y-20,z]+")";            // after
+
+"rgb(255,"+(y-20)+",0)";           // before
+"rgb(255,"+[y-20,"0)"];            // after
+Pretty useful for RGB declarations.
