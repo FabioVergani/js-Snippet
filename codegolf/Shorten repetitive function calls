@@ -1,0 +1,11 @@
+i=[Math.random()*2,Math.random()*3,Math.random()*4); // before
+r=Math.random;i=[r()*2,r()*3,r()*4];                 // after
+
+i=Math.cos(10)*Math.cos(20)*Math.cos(30);
+j=Math.sin(10)*Math.sin(20)*Math.sin(30);
+k=Math.random(10)*Math.random(20)*Math.random(30);    // before
+
+with(m=Math)C=cos,S=sin,R=random;
+i=m.C(10)*m.C(20)*m.C(30);
+j=m.S(10)*m.S(20)*m.S(30);
+k=m.R(10)*m.R(20)*m.R(30);                            // after
