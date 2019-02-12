@@ -1,0 +1,2 @@
+a==1||console.log("not one") // before
+~-a&&console.log("not one")  // after
