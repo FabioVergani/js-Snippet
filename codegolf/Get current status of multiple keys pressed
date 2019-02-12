@@ -1,0 +1,4 @@
+k = [];
+onkeydown = function(x) {k[x.which]=1};
+onkeyup = function(x) {k[x.which]=0};
+With this method, the array k always contains the keycodes pressed/released
