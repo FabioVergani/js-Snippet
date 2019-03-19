@@ -5,7 +5,10 @@ const g=d.createElement('canvas').getContext('experimental-webgl');
 d.open();
 j=0;
 for(i in g){//orderin NOT uaranteed
-	d.writeln((i[0]+i[6])+' | '+(i[9]?[0,6]:[0,7,8]).map(n=>i[n]||'').join('')+': '+i)
+	//d.writeln((i[0]+i[6])+' | '+(i[9]?[0,6]:[0,7,8]).map(n=>i[n]||'').join('')+': '+i)
+	d.writeln(
+	i[0]+(i[9]?i[6]:i[7]+i[8])+' :'+i
+	)
 };
 d.close();
 //
