@@ -4,3 +4,11 @@ for(const [key, value] of [
 ]){
  console.log(key, value);
 }
+
+
+for(const [key,value] of [
+['§','.style'],
+]){
+i=i.replace(RegExp(key,'g'),value);
+};
+console.log(i);
