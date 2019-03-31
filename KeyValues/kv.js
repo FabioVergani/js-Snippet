@@ -12,3 +12,14 @@ for(const [key,value] of [
 i=i.replace(RegExp(key,'g'),value);
 };
 console.log(i);
+
+
+
+for(s of [
+'§.style',
+"$='",
+'£;with(',
+'@;for(i',
+
+]){i=i.replace(RegExp(s[0],'g'),s.substr(1))};
+console.log(i);
