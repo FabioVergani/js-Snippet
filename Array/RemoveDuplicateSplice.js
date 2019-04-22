@@ -1,13 +1,10 @@
 const uniques=m=>{
 	if(null!==m){//<
-		let i=m.length;
-		while(0!==i){
-		if(i!==m.indexOf(m[i])){
-			m.splice(i,1);
-			--i
-		};
-		--i
-		}
+			let i=m.length;
+			while(0!==i){
+				const n=m.indexOf(m[--i]);
+				if(i!==n){m.splice(n,1)}
+			};
 	}
 };
 
