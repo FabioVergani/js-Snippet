@@ -1,0 +1,72 @@
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+
+Assigning to new variables names and providing default valuesSection
+A property can be both 1) unpacked from an object and assigned to a variable with a different name and 2) assigned a default value in case the unpacked value is undefined.
+
+var {a: aa = 10, b: bb = 5} = {a: 3};
+
+console.log(aa); // 3
+console.log(bb); // 5
+
+
+Setting a function parameter's default valueSection
+ES5 version
+function drawES5Chart(options) {
+  options = options === undefined ? {} : options;
+  var size = options.size === undefined ? 'big' : options.size;
+  var coords = options.coords === undefined ? {x: 0, y: 0} : options.coords;
+  var radius = options.radius === undefined ? 25 : options.radius;
+  console.log(size, coords, radius);
+  // now finally do some chart drawing
+}
+
+drawES5Chart({
+  coords: {x: 18, y: 30},
+  radius: 30
+});
+ES2015 version
+function drawES2015Chart({size = 'big', coords = {x: 0, y: 0}, radius = 25} = {}) {
+  console.log(size, coords, radius);
+  // do some chart drawing
+}
+
+drawES2015Chart({
+  coords: {x: 18, y: 30},
+  radius: 30
+});
+
+
+
+
+
+
+
+For of iteration and destructuring
+
+var people = [
+  {
+    name: 'Mike Smith',
+    family: {
+      mother: 'Jane Smith',
+      father: 'Harry Smith',
+      sister: 'Samantha Smith'
+    },
+    age: 35
+  },
+  {
+    name: 'Tom Jones',
+    family: {
+      mother: 'Norah Jones',
+      father: 'Richard Jones',
+      brother: 'Howard Jones'
+    },
+    age: 25
+  }
+];
+
+for (var {name: n, family: {father: f}} of people) {
+  console.log('Name: ' + n + ', Father: ' + f);
+}
+
+// "Name: Mike Smith, Father: Harry Smith"
+// "Name: Tom Jones, Father: Richard Jones"
