@@ -56,7 +56,7 @@
 					do{
 						const n=r();
 						let v=f(n*l)+1;
-						if(v===j){v=j<l?++v:--v};
+						if(v===j){v=v<l?++v:--v};
 						v=m[j=v];
 						if(i>2){v=v+(n<.2?v+'\n':'\u0020')};
 						s.push(v)
