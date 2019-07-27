@@ -33,8 +33,28 @@ const tests={
 	]
 };
 //
+const isMergeable=x=>{
+		let r=false;
+		if(null!==x && 'object'===typeof x){
+			r=true;
+
+			//&&!!x && !isSpecial(x);
+//x.constructor === Object
+		};
+		return r
+	};
+//
+const tester=x=>isMergeable(x)+'\t|'+(x&& x.constructor)+'|'+!!x+'|'+x+'->'+typeof x;
+const tester2=(n,x)=>n+isMergeable(x)+'\t|'+x.constructor+'|'+!!x+'|'+'->'+typeof x;
+//
 for(const [key,val] of Object.entries(tests)){
 	console.group(key);
-	console.log.call(null,val.map(x=>x+'->'+typeof x).join('\n'));
+	console.log.call(null,val.map(tester).join('\n'));
 	console.groupEnd();
-}
+};
+tester2(1,Symbol());
+tester2(2,Symbol('foo'));
+tester2(3,Symbol.iterator);
+
+
+
