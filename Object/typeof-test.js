@@ -6,17 +6,18 @@ const tests={
 	Undefined:[undefined,declaredButUndefinedVariable],//all:undefined
 	Numbers:[0,1,3.14,Math.LN2,Infinity,NaN,Number('1')],//all:number
 	BigInt:[1n,BigInt('1'),BigInt(Number.MAX_SAFE_INTEGER)],//all:bigint
-	Strings:['','bla\0020ubla',`template literal`,'0',String(1),Date(),new Date()],//all:string
+	Strings:['','bla\0020ubla',`template literal`,'0',String(1),Date()],//all:string
 	//Symbols:[Symbol(),Symbol('foo'),Symbol.iterator],//all:symbol
 	Null:[null],//all:
 	Objects:[//all:
 		{},{a: 1},
 		[1, 2, 4],
 		/regex/, new RegExp('\\w+'),
-		Date,
+		new Date(),
 		Math
 	],
 	Functions:[//all:
+		Date,
 		RegExp,
 		new Function(),
 		function(){},
@@ -37,8 +38,3 @@ for(const [key,val] of Object.entries(tests)){
 	console.log.call(null,val.map(x=>x+'->'+typeof x).join('\n'));
 	console.groupEnd();
 }
-
-
-
-
-
