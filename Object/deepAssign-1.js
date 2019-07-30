@@ -1,10 +1,12 @@
-	const Object=window.Object,
-	isObject=x=>x instanceof Object,
+	const Obj=window.Object,
+	isObj=x=>x instanceof Obj,
 	deepAssign=(a,b)=>{
-		const f=isObject;
+		const f=isObj;
 		if(f(b)){
-			for(const[i,B] of Object.entries(b)){
-				a[i]=(i in a && f(B) && f(a[i]))?deepAssign(a[i],B):B;
+			const g=deepAssign;
+			for(const [i,d] of Obj.entries(b)){
+				const c=a[i];
+				a[i]=(f(c) && f(d))?g(c,d):d;
 			}
 		};
 		return a
