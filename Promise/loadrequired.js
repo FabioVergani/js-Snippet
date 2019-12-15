@@ -1,3 +1,12 @@
+function init(){
+	f1();
+	f2();
+	f3();
+	f4();
+	f5();
+	console.log('init!');
+}
+//#
 (w=>{
 	const {
 		console,
@@ -26,11 +35,12 @@
 	d.head.appendChild(frag);
 	Promise.all(js).then(m=>{
 		js.length=0;
-		let v;
-		while(v=m.shift()){
+		m.forEach((v,i,m)=>{
 			const e=nest('script');
 			e.src=v.href;
+			m[i]=new Promise(f=>e.onload=()=>f(e));
 			v.replaceWith(e)
-		}
+		});
+		Promise.all(m).finally(init)
 	})
 })(window);
