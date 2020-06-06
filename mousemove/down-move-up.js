@@ -5,18 +5,21 @@
 	if($el){
 		const trace=msg=>{console.log(msg)},
 		move=event=>{
+			event.preventDefault();
 			trace('move');
 		},
 		up=()=>{
 			trace('up');
 			listeners('remove','add')
 		},
-		out=event=>{
+		out=()=>{
 			trace('out');
 			up()
 		},
-		down=()=>{
-			trace('down');
+		down=event=>{
+			event.preventDefault();
+			const rect=$el.getBoundingClientRect();
+			trace('down:%O',{rect});
 			listeners('add','remove')
 		},
 		m=[
@@ -34,7 +37,5 @@
 
 		$el.addEventListener('mousedown',down);
 	}
-
-	//#
 
 })(window);
