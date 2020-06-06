@@ -1,41 +1,40 @@
 (w=>{
-	const $el=w.document.querySelector('.el');
+	const d=w.document;
 
+	const $el=d.querySelector('.wheel');
 	if($el){
-		const move=event=>{
-			console.log('move');
-		};
-
-		const up=()=>{
-			console.log('up');
-			handlers('remove').addEventListener('mousedown',down)
-		};
-
-		const out=event=>{
-			console.log('out');
+		const trace=msg=>{console.log(msg)},
+		move=event=>{
+			trace('move');
+		},
+		up=()=>{
+			trace('up');
+			listeners('remove','add')
+		},
+		out=event=>{
+			trace('out');
 			up()
-		};
-
-		const down=()=>{
-			console.log('down');
-			handlers('add').removeEventListener('mousedown',down);
-		};
-
-		const pairs=[
+		},
+		down=()=>{
+			trace('down');
+			listeners('add','remove')
+		},
+		m=[
 			['mousemove',move],
 			['mouseout',out],
 			['mouseup',up]
-		];
-
-		const handlers=s=>{
-			const e=$el, f=w[s+'EventListener'];
-			for(const m of pairs){
-				f.apply(e,m)
+		],
+		listeners=(a,b)=>{
+			const e=$el, p='EventListener', f=w[a+p];
+			for(const x of m){
+				f.apply(e,x)
 			};
-			return e
+			w[b+p].call(e,'mousedown',down)
 		};
 
 		$el.addEventListener('mousedown',down);
 	}
+
+	//#
 
 })(window);
