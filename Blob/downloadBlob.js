@@ -1,5 +1,5 @@
 //m:array,fileName
-const downloadBlob = (m, s) => {
+const downloadBlob = (m, s, t=100) => {
   const { URL, Blob, document: d } = globalThis, a = d.createElement("a"), o = URL.createObjectURL(new Blob(m));
   a.href = o;
   a.setAttribute("download", s);
@@ -7,5 +7,5 @@ const downloadBlob = (m, s) => {
   d.body.appendChild(a);
   a.click();
   a.remove();
-  URL.revokeObjectURL(o);
+  setTimeout(()=>{URL.revokeObjectURL(o)}, t);
 };
