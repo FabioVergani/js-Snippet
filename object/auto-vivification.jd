@@ -1,0 +1,143 @@
+// Needed to check isProxy
+const util = require('util');
+ 
+// Quick and Dirty Type Finder
+const type = (obj) =>
+  obj.__proto__.constructor.name;
+ 
+// Switch-offable debug
+debug = console.log;
+ 
+// Helpers
+const isArray = (obj) 
+  => type(obj) == "Array";
+ 
+const isObject = (obj)
+  => type(obj) == "Object";
+ 
+const isFunction = (obj) 
+  => type(obj) == "Function";
+ 
+const isProxy = (obj) 
+  => util.types.isProxy(obj);
+ 
+const isComplex = (obj) =>
+  isArray(obj) || 
+  isObject(obj) || 
+  isFunction(obj) || 
+  isProxy(obj)
+ 
+const isSimple = (obj) 
+  => !isComplex(obj)
+ 
+// Convert back to POJSO
+// Deep clone Auto object
+function deepClone(inputObject) {
+ 
+  // Do we have a leaf element?
+  if (isSimple(inputObject))
+    return inputObject;
+ 
+  // We have either array or nested object
+  let outputObject = 
+    type(inputObject) == "Array"
+      ? [] 
+      : {};
+ 
+  // If it's an array
+  // Even empty slots of Array(n)
+  if (isArray(inputObject)) {
+    for (let element = 0; 
+         element < inputObject.length; 
+         element++) {
+ 
+      let value = inputObject[element];
+ 
+      // Either recursively clone array/object
+      // Or simply copy native types
+      outputObject[element] =
+        isArray(inputObject) || isObject(inputObject)
+          ? deepClone(value) 
+          : value;
+    }
+  }
+ 
+  // If it's an object
+  else {
+    for (let element in inputObject) {
+ 
+      let value = inputObject[element];
+      outputObject[element] =
+        isArray(inputObject) || isObject(inputObject)
+          ? deepClone(value) 
+          : value;
+    }
+  }
+ 
+  // We are ready with POJSO
+  return outputObject;
+}
+ 
+// Support added for Array vivification
+// If elements is non 0, it creates an array of objects
+// otherwise creates a single object
+function Auto(elements) {
+ 
+  // Convert to plain old javascript object
+  function toObject() {
+    return deepClone(this);
+  }
+ 
+  if (elements != undefined && elements > 0) {
+ 
+    // If called as Auto(n)
+    // Create array on n AutoVivs
+    return new Proxy(new Array(elements),
+      {
+        get: (obj, prop) => {
+ 
+          if (prop == 'toObject')
+            return toObject;
+ 
+          if (prop >= obj.length)
+            return undefined;
+ 
+          if (obj[prop] === undefined)
+            obj[prop] = Auto();
+ 
+          return obj[prop];
+        }
+      }
+    )
+  } else {
+ 
+    // If called as Auto()
+    // Create a single AutoViv object
+    return new Proxy({},
+      {
+        // Handler checks if prop does not exists, creates it
+        get: (obj, prop) => {
+          if (prop == 'toObject')
+            return toObject;
+ 
+          return (prop in obj 
+            ? obj[prop] 
+            : obj[prop] = Auto());
+        }
+      }
+    )
+  }
+}
+ 
+let univ = Auto();
+ 
+univ.college.stream.year = "A+";
+univ.college.stream.subjects = Auto(3);
+univ.college.stream.subjects[0].name = "JavaScript";
+univ.college.stream.subjects[0].marks = 33;
+ 
+ 
+console.log(univ);
+console.log(univ.toObject());
+console.log(univ.college.stream.subjects);
+console.log(univ.college.stream.subjects.toObject());
