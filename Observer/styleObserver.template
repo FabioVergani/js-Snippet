@@ -1,0 +1,14 @@
+
+										const styleObserver = new w.MutationObserver(mutations=>{
+											for(const mutation of mutations) {
+												// mutation.attributeName is 'style'
+
+											}
+										});
+										styleObserver.observe(
+											$html,
+											{
+												attributes: true,
+												attributeFilter: ['style']
+											}
+										);
