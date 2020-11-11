@@ -2,11 +2,11 @@ const replacePlaceholders = (s, values = null) => {
     if (s?.length) {
         const e = globalThis;
             if (values) {
-                const RE = e.RegExp;
+               const RE = e.RegExp, p = ['\\{', '\\}'];
                 let replaced = s;
                 for (const [key, value] of e.Object.entries(values)) {
                     replaced = replaced.replace(
-                        new RE(`\\{${key}\\}`, 'g'),
+                        new RE(p.join(key), 'gm'),
                         value
                     );
                 }
