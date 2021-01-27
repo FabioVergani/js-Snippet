@@ -1,1 +1,1 @@
-compareObjectByXKey = ({X: a }, { X: b }) => a > b ? 1 : b > a ? -1 : 0;
+compareObjectByXKey = ({ X: a }, { X: b }) => a > b ? 1 : b > a ? -1 : 0;
