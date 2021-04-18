@@ -1,0 +1,5 @@
+	const log = (...args) => {
+		const e = globalThis.console;
+		args.unshift("---:")
+		e.log.apply(e,args);
+	};
