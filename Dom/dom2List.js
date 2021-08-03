@@ -1,3 +1,4 @@
+/*
 const dom2List = root => {
   const 
     d = root.ownerDocument,
@@ -15,7 +16,7 @@ const dom2List = root => {
 
 //document.body.appendChild(dom2List(document.firstElementChild));
 
-/*
+
 const dom2List = (root, callback) => {
 	const 
 	        d = root.ownerDocument,
