@@ -22,3 +22,39 @@ const dom2list = root => {
 };
 
 //document.body.appendChild(dom2list(document.firstElementChild));
+
+
+/*
+
+const dom2list = (root, fn) => {
+	if (1 !== root?.nodeType) {
+		return false;
+	} else {
+		const d = root.ownerDocument;
+		const nest = (a, b) => a.appendChild(d.createElement(b));
+		const ul = x => nest(x, 'ul');
+		const e = ul(d.createDocumentFragment());
+		const walk = (a, b) => {
+			const li = nest(b, 'li');
+			fn(li, a);
+			const m = a.children;
+			if (m?.length) {
+				const c = ul(li);
+				for (const node of m) {
+					walk(node, c);
+				}
+			}
+		};
+		walk(root, e);
+		return e;
+	}
+};
+
+document.body.appendChild(
+	dom2list(document.firstElementChild, (li, father) => {
+		li.textContent = father.nodeName;
+	})
+);
+
+
+*/
