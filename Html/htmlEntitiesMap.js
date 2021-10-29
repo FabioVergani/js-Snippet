@@ -1,3 +1,5 @@
+  const htmlTagRE = /<\s*[^>]*>[^<]+<\s*\/[^>]*\s*>/g;
+
   const htmlEntitiesMap1 = new Map([
     ['&','&amp;'],
     ['<','&lt;'],
