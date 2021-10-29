@@ -17,5 +17,5 @@
     ['&apos;',"'"]
   ]);
 
-  const htmlEntitiesRE2 = /(&(?:a(?:mp|pos)|(?:l|g|quo)t))/g;
+  const htmlEntitiesRE2 = /(&(?:a(?:mp|pos)|(?:l|g|quo)t);)/g;
   str.replace(htmlEntitiesRE2, match => htmlEntitiesMap2.get(match));
