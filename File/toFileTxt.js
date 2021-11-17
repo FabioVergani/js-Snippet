@@ -1,43 +1,34 @@
-	const toFileTxt = (name,str) => {
+	const getTimeStamp = () => {
+		const e = new Date();
+		return `${
+			e.getDate()
+		}${
+			e.getMonth()+1
+		}${
+			e.getFullYear()
+		}-${
+			e.getHours()
+		}${
+			e.getMinutes()
+		}${
+			e.getSeconds()
+		}`
+	},
+	textPlain = {
+		type: 'text/plain;charset=utf-8'
+	},
+	toFileTxt = (name,str) => {
 		const
-			{
-				URL: U,
-				Blob: B,
-				document: d
-			} = window,
-			e = d.createElement('a'),
-			textPlain = {
-				type: 'text/plain;charset=utf-8'
-			},
-			url = e.href = U.createObjectURL(
+			e = document.createElement('a'),
+			url = e.href = URL.createObjectURL(
 				new File(
-					[
-						new B(
-							[str],
-							textPlain
-						)
-					],
+					[new Blob([str],textPlain)],
 					(e.download = name),
 					textPlain
 				)
 			);
-		d.body.appendChild(e);
+		document.body.appendChild(e);
 		e.click();
 		e.remove();
-		U.revokeObjectURL(url);
-	}
-
-/*
-  const btn = (id,fn) => {
-		const e = document.getElementById(id);
-		if(e){
-			e.disabled = false;
-			e.onclick = fn;
-		}
+		URL.revokeObjectURL(url);
 	};
-
-	btn('JS',() => {
-		toFileTxt(`build_${getTimeStamp()}.js`,'');
-	});
-  
-*/
