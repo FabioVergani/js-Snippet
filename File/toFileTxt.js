@@ -1,5 +1,6 @@
 	const getTimeStamp = () => {
 		const e = new Date();
+		const pad = x => x.toString().padStart(2,'0');
 		return `${
 			e.getDate()
 		}${
@@ -7,11 +8,11 @@
 		}${
 			e.getFullYear()
 		}-${
-			e.getHours()
+			pad(e.getHours())
 		}${
-			e.getMinutes()
+			pad(e.getMinutes())
 		}${
-			e.getSeconds()
+			pad(e.getSeconds())
 		}`
 	},
 	textPlain = {
