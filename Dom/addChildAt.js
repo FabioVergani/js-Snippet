@@ -1,8 +1,7 @@
-const addChildAt = (a, b, i) => {
-	const m = a.children, l = m.length;
-	if (l) {
-		m[(i >= l ? l : i) - 1].after(b);
+const addChildAt = (parent, child, index) => {
+	if (index >= parent.children.length) {
+		parent.append(child);
 	} else {
-		a.append(b);
+		parent.insertBefore(child, parent.children[index]);
 	}
 };
