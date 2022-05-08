@@ -1,0 +1,3 @@
+const compose = fns => arg => fns.reduceRight((arg, fn) => fn(arg), arg);
+
+const print = compose([log, serialize]);
