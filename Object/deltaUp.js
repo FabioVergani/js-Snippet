@@ -1,21 +1,25 @@
 const delta = (a, b) => {
-    let e = a||b;
-    if (e && e !== b && b) {
-        const fn = Object.entries;
-        if (fn(b).length) {
-            const m = fn(a);
-            if (m.length) {
-                let i = 0;
-                const obj = {};
-                for (const [key, value] of m) {
-                    if (!b.hasOwnProperty(key) || value !== b[key]) {
-                        ++i;
-                        obj[key] = value;
+    let e = a;
+    if (e && e !== b) {
+        if (b) {
+            const fn = Object.entries;
+            if (fn(b).length) {
+                const m = fn(a);
+                if (m.length) {
+                    let i = 0;
+                    const obj = {};
+                    for (const [key, value] of m) {
+                        if (!b.hasOwnProperty(key) || value !== b[key]) {
+                            ++i;
+                            obj[key] = value;
+                        }
                     }
+                    e = i ? obj : null;
                 }
-                e = i ? obj : null;
             }
         }
+    } else {
+        e = null
     }
     /*
     console.log({
@@ -26,6 +30,7 @@ const delta = (a, b) => {
     */
     return e;
 };
+
 
 /*
 { // delta tests:
