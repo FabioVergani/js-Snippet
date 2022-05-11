@@ -1,15 +1,19 @@
+// prettier-ignore
 const delta = (a, b) => {
     let e = a;
     if (e && e !== b) {
         if (b) {
-            const fn = Object.entries;
-            if (fn(b).length) {
-                const m = fn(a);
-                if (m.length) {
+            const entries = Object.entries;
+            if (entries(b).length) {
+                const pairs = entries(a);
+                if (pairs.length) {
                     let i = 0;
                     const obj = {};
-                    for (const [key, value] of m) {
-                        if (!b.hasOwnProperty(key) || value !== b[key]) {
+                    for (const [key, value] of pairs) {
+                        if (
+                            value !== b[key] ||
+                            !b.hasOwnProperty(key)
+                        ) {
                             ++i;
                             obj[key] = value;
                         }
@@ -30,7 +34,6 @@ const delta = (a, b) => {
     */
     return e;
 };
-
 
 /*
 { // delta tests:
