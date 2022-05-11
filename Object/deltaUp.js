@@ -1,4 +1,3 @@
-// prettier-ignore
 const delta = (a, b) => {
     let e = a||b;
     if (e && e !== b && b) {
@@ -9,7 +8,7 @@ const delta = (a, b) => {
                 let i = 0;
                 const obj = {};
                 for (const [key, value] of m) {
-                    if (value !== b[key]) {
+                    if (!b.hasOwnProperty(key) || value !== b[key]) {
                         ++i;
                         obj[key] = value;
                     }
