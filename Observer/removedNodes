@@ -1,0 +1,10 @@
+const observer = new MutationObserver(mutations => {
+	for (const mutation of mutations) {
+		for (const removedNode of mutation.removedNodes) {
+			console.log({ removedNode });
+      //observer.disconnect();
+		}
+	}
+});
+
+observer.observe(gutters, { subtree: false, childList: true });
