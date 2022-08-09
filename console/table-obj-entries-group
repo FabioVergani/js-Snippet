@@ -1,0 +1,10 @@
+                {
+                    const re = /[SE]$/;
+                    console.table(Object.entries(---).reduce((acc, [key,value]) => {
+                        const isBound = re.test(key)
+                        const i =  isBound ? key.slice(0, -1) : key;
+                        const e = acc[i] ??= {};
+                        e[isBound ? key.slice(-1) : 'active'] = value;
+                        return acc;
+                    }, {}));
+                }
