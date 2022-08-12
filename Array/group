@@ -1,0 +1,7 @@
+                const groups = items.reduce(
+                    (o, e, i) => (
+                        i = i % 2 ? 'even' : 'odd',
+                        (o[i] ??= []).push(e), o
+                    ),
+                    {}
+                );
