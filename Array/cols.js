@@ -1,26 +1,26 @@
-const inColumns = (arr, numCol) => {
-    const m = [];
+export const inColumns = (arr, numCol) => {
+    const matrix = [];
     const len = arr?.length;
     if (len) {
         const totalCols = numCol | 0;
         if (2 > totalCols) {
-            m[0] = [...arr];
+            matrix[0] = [...arr];
         } else {
             for (let i = 0; i < totalCols; ++i) {
-                m[i] = [];
+                matrix[i] = [];
             }
             for (let i = 0; i < len; ++i) {
-                m[i % numCol].push(arr[i]);
+                matrix[i % numCol].push(arr[i]);
             }
         }
     } else {
-        m[0] = [];
+        matrix[0] = [];
     }
-    return m;
+    return matrix;
 };
 
-const readColumns = (arr, numCol) => {
-    const m = [];
+export const readColumns = (arr, numCol) => {
+    const matrix = [];
     for (const col of arr) {
         const arr = [];
         if (col?.length) {
@@ -30,12 +30,12 @@ const readColumns = (arr, numCol) => {
                 }
             }
         }
-        m.push(arr);
+        matrix.push(arr);
     }
     const m = [];
-    while (m.reduce((remains, col) => remains + col.length, 0)) {
+    while (matrix.reduce((remains, col) => remains + col.length, 0)) {
         for (let i = 0; i < numCol; ++i) {
-            const e = m[i]?.shift();
+            const e = matrix[i]?.shift();
             if (e) {
                 m.push(e);
             }
