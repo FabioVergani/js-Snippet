@@ -20,26 +20,28 @@ export const inColumns = (arr, numCol) => {
 };
 
 export const readColumns = (arr, numCol) => {
-    const matrix = [];
-    for (const col of arr) {
-        const arr = [];
-        if (col?.length) {
-            for (const e of col) {
-                if (e) {
-                    arr.push(e);
+    const m = [];
+    if (arr?.length) {
+        const matrix = [];
+        for (const col of arr) {
+            const arr = [];
+            if (col?.length) {
+                for (const e of col) {
+                    if (e) {
+                        arr.push(e);
+                    }
                 }
             }
+            matrix.push(arr);
         }
-        matrix.push(arr);
-    }
-    const m = [];
-    while (matrix.reduce((remains, col) => remains + col.length, 0)) {
-        for (let i = 0; i < numCol; ++i) {
-            const e = matrix[i]?.shift();
-            if (e) {
-                m.push(e);
+        while (matrix.reduce((remains, col) => remains + col.length, 0)) {
+            for (let i = 0; i < numCol; ++i) {
+                const e = matrix[i]?.shift();
+                if (e) {
+                    m.push(e);
+                }
             }
-        }
+        }        
     }
     return m;
 };
