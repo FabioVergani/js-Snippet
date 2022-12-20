@@ -1,0 +1,7 @@
+		const n = entries?.length;
+		if (0 < n) {
+			let i = -1;
+			while (++i < n) {
+				 //...
+			}
+		}
