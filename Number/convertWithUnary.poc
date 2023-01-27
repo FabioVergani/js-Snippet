@@ -1,0 +1,44 @@
+    console.clear();
+    console.table(
+        [
+            true,
+            false,
+            undefined,
+            null,
+            '',
+            '10.0',
+            '100',
+            '100.0373',
+            '0.0314E+2',
+            'John Doe',
+            1,
+            0,
+            -1,
+            -0,
+            +0,
+            -0.1,
+            {},
+            [],
+            [[]]
+        ].map(item => {
+            const a = +item;
+            const b = Number(item);
+            return {
+                '+value === Number(value)': a === b,
+                value: item,
+                '+value': a,
+                'Number(value)': b,
+                stringify: JSON.stringify(item)
+            };
+        })
+    );
+
+    // NaNs
+    [undefined, 'John Doe', {}, [[1, 2, 3]]].forEach(item => {
+        const a = +item;
+        const b = Number(item);
+        console.group(`${JSON.stringify(a)} === ${JSON.stringify(b)} ? ${a === b}`);
+        console.dir(a);
+        console.dir(b);
+        console.groupEnd();
+    });
