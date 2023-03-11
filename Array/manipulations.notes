@@ -1,0 +1,36 @@
+// Sorting Flat Arrays
+
+arr.sort((a, b) => a - b);  // ASC 
+arr.sort((a, b) => b - a);  // DESC
+arr.sort()                  // ASC by string
+
+// Sorting an Array of Objects
+
+arr.sort((a, b)=> a.prop - b.prop); // SORT BY PROP VALUE
+
+// Sorting Objects by prop
+
+Object.keys(obj).sort((a, b)=> obj[a].sortProperty - obj[b].sortProperty); 
+
+
+// Find occurrences
+const arr = [5, 5, 5, 2, 2, 2, 2, 2, 9, 4];
+const counts = {};
+for (const num of arr) {  //USE FOR OF
+  counts[num] = counts[num] ? counts[num] + 1 : 1;
+}
+
+// Add/Subtract all numbers in an Array
+let sum = arr.reduce((a, b) => a + b, 0); //ADD
+let diff = arr.reduce((a, b) => a - b, 0); //SUBTRACT
+
+//Find Alphanumeric Chars from a String
+'FT&abC3'.match(/^[A-Za-z0-9]+$/) // [F,T,a,b,C,3]
+
+
+//Find Largest / Smallest number in Array:
+Math.max(...arr);
+Math.min(...arr);
+
+//Copy Arrays by value (not by reference)
+let arr1 = origArray.slice();  
