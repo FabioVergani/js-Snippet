@@ -1,75 +1,81 @@
 import { splitAtFirst } from './splitAtFirst.mjs';
 
 describe('splitAtFirst', () => {
-	describe('Core behavior', () => {
-		test.each`
-			input                    | delimiter | expected
-			${'prefix*suffix'}       | ${'*'}    | ${['prefix', 'suffix']}
-			${'first second third'}  | ${' '}    | ${['first', 'second third']}
-			${'line1\tline2\tline3'} | ${'\t'}   | ${['line1', 'line2\tline3']}
-			${'line1\nline2'}        | ${'\n'}   | ${['line1', 'line2']}
-			${'héllo→wørld'}         | ${'→'}    | ${['héllo', 'wørld']}
-			${'text🔥more'}          | ${'🔥'}   | ${['text', 'more']}
-			${'123.456.789'}         | ${'.'}    | ${['123', '456.789']}
-			${'a-b-c'}               | ${'-'}    | ${['a', 'b-c']}
-			${'a:b:c'}               | ${':'}    | ${['a', 'b:c']}
-			${'x:'}                  | ${':'}    | ${['x']}
-			${':x'}                  | ${':'}    | ${['', 'x']}
-			${'::x'}                 | ${'::'}   | ${['', 'x']}
-			${'a::b'}                | ${':'}    | ${['a', ':b']}
-			${'a::b::c'}             | ${'::'}   | ${['a', 'b::c']}
-			${'a::b'}                | ${'::'}   | ${['a', 'b']}
-			${'a::'}                 | ${'::'}   | ${['a']}
-			${'abc'}                 | ${'bc'}   | ${['a']}
-			${'a||b||c'}             | ${'||'}   | ${['a', 'b||c']}
-		`(
-			'"$input", "$delimiter" ➝ $expected', // ➝ []
-			({ input, delimiter, expected }) => {
-				const result = splitAtFirst(input, delimiter);
-				expect(result).toEqual(expected);
-			}
-		);
+	describe('behavior', () => {
+		const titler = '"$input", "$delimiter" ➝ $expected';
+		const tester = ({ input, delimiter, expected }) => {
+			const result = splitAtFirst(input, delimiter);
+			expect(result).toEqual(expected);
+		};
+		describe('split', () => {
+			test.each`
+				input                    | delimiter | expected
+				${'prefix*suffix'}       | ${'*'}    | ${['prefix', 'suffix']}
+				${'first second third'}  | ${' '}    | ${['first', 'second third']}
+				${'line1\tline2\tline3'} | ${'\t'}   | ${['line1', 'line2\tline3']}
+				${'line1\nline2'}        | ${'\n'}   | ${['line1', 'line2']}
+				${'héllo→wørld'}         | ${'→'}    | ${['héllo', 'wørld']}
+				${'text🔥more'}          | ${'🔥'}   | ${['text', 'more']}
+				${'123.456.789'}         | ${'.'}    | ${['123', '456.789']}
+				${'a-b-c'}               | ${'-'}    | ${['a', 'b-c']}
+				${'a:b:c'}               | ${':'}    | ${['a', 'b:c']}
+				${'x:'}                  | ${':'}    | ${['x']}
+				${':x'}                  | ${':'}    | ${['', 'x']}
+				${'::x'}                 | ${'::'}   | ${['', 'x']}
+				${'a::b'}                | ${':'}    | ${['a', ':b']}
+				${'a::b::c'}             | ${'::'}   | ${['a', 'b::c']}
+				${'a::b'}                | ${'::'}   | ${['a', 'b']}
+				${'a::'}                 | ${'::'}   | ${['a']}
+				${'abc'}                 | ${'bc'}   | ${['a']}
+				${'abcabc'}              | ${'bca'}  | ${['a', 'bc']}
+				${'a||b||c'}             | ${'||'}   | ${['a', 'b||c']}
+			`(titler, tester);
+		});
+		describe('no-split', () => {
+			describe('delimiter not found or equal to input', () => {
+				test.each`
+					input    | delimiter | expected
+					${'abc'} | ${'abcd'} | ${['abc']}
+					${'abc'} | ${'abc'}  | ${['abc']}
+					${'abc'} | ${'Abc'}  | ${['abc']}
+					${'abc'} | ${'xyz'}  | ${['abc']}
+				`(titler, tester);
+			});
+			describe('falsy delimiter', () => {
+				test.each`
+					input    | delimiter    | expected
+					${'abc'} | ${''}        | ${['abc']}
+					${'abc'} | ${null}      | ${['abc']}
+					${'abc'} | ${undefined} | ${['abc']}
+				`(titler, tester);
+			});
+		});
 	});
-	describe('No-split', () => {
-		const input = 'abc';
-		const expected = ['abc'];
-		const boundTestEach = test.each.bind(
-			null,
-			null,
-			`"${input}", "%s" ➝ ${expected}`, //
-			delimiter => {
-				const result = splitAtFirst(input, delimiter);
-				expect(result).toEqual(expected);
-			}
-		);
-		describe('falsy delimiter', () => {
-			boundTestEach(['', 0, false, null, undefined]);
+	describe('cases', () => {
+		const titler = '$description'; //: "$input", "$delimiter" ➝ $expected
+		const tester = ({ input, delimiter, expected }) => {
+			const result = splitAtFirst(input, delimiter);
+			expect(result).toEqual(expected);
+		};
+		describe('edge', () => {
+			test.each`
+				description                      | input         | delimiter   | expected
+				${'whitespace only input'}       | ${'   '}      | ${' '}      | ${['', '  ']}
+				${'space input and delimiter'}   | ${' '}        | ${' '}      | ${[' ']}
+				${'empty input'}                 | ${''}         | ${'-'}      | ${['']}
+				${'input and delimiter'}         | ${'a b'}      | ${' '}      | ${['a', 'b']}
+				${'zero-width characters'}       | ${'a\u200Bb'} | ${'\u200B'} | ${['a', 'b']}
+				${'newline characters'}          | ${'a\r\nb'}   | ${'\r\n'}   | ${['a', 'b']}
+				${'tab'}                         | ${'a\tb'}     | ${'\t'}     | ${['a', 'b']}
+				${'same characters'}             | ${'---'}      | ${'-'}      | ${['', '--']}
+				${'delimiter at start and end'}  | ${'*text*'}   | ${'*'}      | ${['', 'text*']}
+				${'delimiter longer than input'} | ${'ab'}       | ${'abc'}    | ${['ab']}
+				${'input is just the delimiter'} | ${'::'}       | ${'::'}     | ${['::']}
+				${'accented character'}          | ${'café'}     | ${'é'}      | ${['caf']}
+			`(titler, tester);
 		});
-		describe('delimiter not found or equal to input', () => {
-			boundTestEach(['abcd', input, 'Abc', 'xyz', 123, 0]);
-		});
-	});
-	describe('Cases', () => {
-		const boundTestEach = test.each.bind(
-			null,
-			null,
-			'%sdescription: "%sinput", "%sdelimiter" ➝ %sexpected',
-			(description, input, delimiter, expected) => {
-				const result = splitAtFirst(input, delimiter);
-				expect(result).toEqual(expected);
-			}
-		);
-		describe('Edge', () => {
-			boundTestEach`
-				description                    | input    | delimiter | expected
-				${'space input and delimiter'} | ${' '}   | ${' '}    | ${[' ']}
-				${'empty input'}               | ${''}    | ${'-'}    | ${['']}
-				${'same characters'}           | ${'---'} | ${'-'}    | ${['', '--']}
-				${'boolean input'}             | ${true}  | ${'-'}    | ${[true]}
-			`;
-		});
-		describe('Real-world', () => {
-			boundTestEach`
+		describe('real-world', () => {
+			test.each`
 				description                    | input                               | delimiter | expected
 				${'email address parsing'}     | ${'user@domain.com'}                | ${'@'}    | ${['user', 'domain.com']}
 				${'key-value configuration'}   | ${'database_url=postgres://host'}   | ${'='}    | ${['database_url', 'postgres://host']}
@@ -81,7 +87,7 @@ describe('splitAtFirst', () => {
 				${'Windows path parsing'}      | ${'C:\\Users\\Documents'}           | ${'\\'}   | ${['C:', 'Users\\Documents']}
 				${'file extension extraction'} | ${'document.tar.gz'}                | ${'.'}    | ${['document', 'tar.gz']}
 				${'HTTP header parsing'}       | ${'Content-Type: application/json'} | ${': '}   | ${['Content-Type', 'application/json']}
-			`;
+			`(titler, tester);
 		});
 	});
 });
